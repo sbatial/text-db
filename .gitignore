@@ -4,3 +4,4 @@
 devenv.local.nix
 
 .direnv
+.cache
