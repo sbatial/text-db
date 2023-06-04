@@ -40,7 +40,22 @@ char **add_message(char *message, char **database, size_t *ptr_n) {
   return database;
 }
 
-char **delete_last_message(char **database, size_t *ptr_n);
+char **delete_last_message(char **database, size_t *ptr_n) {
+  --(*ptr_n);
+
+  free(*(database + *ptr_n));
+  // == free(database[*ptr_n]);
+
+  if (0 == (*ptr_n % N_BASE)) {
+    // Explicitly subtracting N_BASE again could easily lead to mis-calculations
+    // but *ptr_n should always reflect the (least) size necessary
+    database = reallocarray(database, *ptr_n, sizeof(char *));
+    // Probably not necessary here because we _shrink_ memory but still safer
+    // than
+    // database = realloc(database, *ptr_n * sizeof(char *));
+  }
+  return database;
+}
 
 // c
 void print_message(char **database, size_t i, size_t n);
@@ -88,7 +103,16 @@ int main() {
   db = add_message("This", db, &msg_count);
 
   printf("*db: %s\n", *db);
-  printf("*(db + 1): %s\n", *(db + 1));
+  printf("*(db + 6): %s\n", *(db + 6));
+  printf("msg_count = %zu\n", msg_count);
+  db = delete_last_message(db, &msg_count);
+  printf("msg_count = %zu\n", msg_count);
+  printf("*db: %s\n", *db);
+  printf("*(db + 6): %s\n", *(db + 6));
+  db = delete_last_message(db, &msg_count);
+  db = delete_last_message(db, &msg_count);
+  db = delete_last_message(db, &msg_count);
+  printf("*(db + 6): %s\n", *(db + 6));
 
   free_database(db);
 
