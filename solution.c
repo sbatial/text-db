@@ -94,13 +94,12 @@ int main() {
 
   printf("msg_count: %zu\n", msg_count);
 
-  printf("*db: %s\n", *db);
   print_db_message(db, 0, msg_count);
-  printf("*(db + 1): %s\n", *(db + 1));
   print_db_message(db, 1, msg_count);
-  printf("*(db + 2): %s\n", *(db + 2));
-  printf("*(db + 3): %s\n", *(db + 3));
-  printf("*(db + 4): %s\n", *(db + 4));
+  print_db_message(db, 2, msg_count);
+  print_db_message(db, 3, msg_count);
+  print_db_message(db, 4, msg_count);
+  print_db_message(db, 5, msg_count);
   // printf("*(db + 5): %s\n", *(db + 5)); // will seg-fault at this point bc
   // the database is not big enough
 
@@ -124,18 +123,6 @@ int main() {
   print_db_message(db, 9, msg_count);
   print_db_message(db, 10, msg_count);
   print_db_message(db, 11, msg_count);
-  printf("*(db + 1): %s\n", *(db + 1));
-  printf("*(db + 2): %s\n", *(db + 2));
-  printf("*(db + 3): %s\n", *(db + 3));
-  printf("*(db + 4): %s\n", *(db + 4));
-  printf("*(db + 5): %s\n", *(db + 5));
-  printf("*(db + 6): %s\n", *(db + 6));
-  printf("*(db + 7): %s\n", *(db + 7));
-  printf("*(db + 8): %s\n", *(db + 8));
-  printf("*(db + 9): %s\n", *(db + 9));
-  printf("*(db + 10): %s\n", *(db + 10));
-  printf("*(db + 11): %s\n", *(db + 11)); // will seg-fault at this point bc
-  // the database is not big enough
 
   db = add_message("This", db, &msg_count);
 
@@ -145,11 +132,12 @@ int main() {
   db = delete_last_message(db, &msg_count);
   printf("msg_count = %zu\n", msg_count);
   printf("*db: %s\n", *db);
-  printf("*(db + 6): %s\n", *(db + 6));
   db = delete_last_message(db, &msg_count);
   db = delete_last_message(db, &msg_count);
   db = delete_last_message(db, &msg_count);
-  printf("*(db + 6): %s\n", *(db + 6));
+  db = delete_last_message(db, &msg_count);
+  db = delete_last_message(db, &msg_count);
+  db = delete_last_message(db, &msg_count);
 
   free_database(db);
 
