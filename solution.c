@@ -31,7 +31,7 @@ char **add_message(char *message, char **database, size_t *ptr_n) {
 
   char *msg_store = malloc(sizeof(char) * (msg_len + 1));
 
-  msg_store = message;
+  strcpy(msg_store, message);
 
   *(database + *ptr_n) = msg_store;
 
