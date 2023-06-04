@@ -68,6 +68,21 @@ void print_message(char **database, size_t i, size_t n) {
 
   printf("Message at %zu: %s\n", i, database[i]);
 }
+// The function above should solve the excercise as stated but we feel like it
+// makes more sense to flesh it out a bit more and take into account that in an
+// array(/db) with e.g. 6 messages you can only access messages up to db[5]
+
+void print_db_message(char **database, size_t db_index, size_t message_count) {
+  if (db_index > message_count - 1) {
+    printf("\033[31;mCannot access database at position %zu!\033[0;m (db_index "
+           "= %zu "
+           "> message_count = %zu)\n",
+           db_index, db_index, message_count - 1);
+    return;
+  }
+
+  printf("Message at %zu: %s\n", db_index, database[db_index]);
+}
 char **read_and_add_line(char **database, size_t *ptr_n);
 
 // d
@@ -80,9 +95,9 @@ int main() {
   printf("msg_count: %zu\n", msg_count);
 
   printf("*db: %s\n", *db);
-  print_message(db, 0, msg_count);
+  print_db_message(db, 0, msg_count);
   printf("*(db + 1): %s\n", *(db + 1));
-  print_message(db, 1, msg_count);
+  print_db_message(db, 1, msg_count);
   printf("*(db + 2): %s\n", *(db + 2));
   printf("*(db + 3): %s\n", *(db + 3));
   printf("*(db + 4): %s\n", *(db + 4));
@@ -97,7 +112,18 @@ int main() {
   db = add_message("On", db, &msg_count);
 
   printf("msg_count: %zu\n", msg_count);
-  printf("*db: %s\n", *db);
+  print_db_message(db, 0, msg_count);
+  print_db_message(db, 1, msg_count);
+  print_db_message(db, 2, msg_count);
+  print_db_message(db, 3, msg_count);
+  print_db_message(db, 4, msg_count);
+  print_db_message(db, 5, msg_count);
+  print_db_message(db, 6, msg_count);
+  print_db_message(db, 7, msg_count);
+  print_db_message(db, 8, msg_count);
+  print_db_message(db, 9, msg_count);
+  print_db_message(db, 10, msg_count);
+  print_db_message(db, 11, msg_count);
   printf("*(db + 1): %s\n", *(db + 1));
   printf("*(db + 2): %s\n", *(db + 2));
   printf("*(db + 3): %s\n", *(db + 3));
@@ -108,7 +134,7 @@ int main() {
   printf("*(db + 8): %s\n", *(db + 8));
   printf("*(db + 9): %s\n", *(db + 9));
   printf("*(db + 10): %s\n", *(db + 10));
-  // printf("*(db + 11): %s\n", *(db + 11)); // will seg-fault at this point bc
+  printf("*(db + 11): %s\n", *(db + 11)); // will seg-fault at this point bc
   // the database is not big enough
 
   db = add_message("This", db, &msg_count);
