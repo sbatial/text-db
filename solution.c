@@ -103,6 +103,15 @@ void print_all(char **database, size_t message_count) {
     print_db_message(database, idx, message_count);
   }
 }
+void free_all(char **database, size_t message_count) {
+  for (size_t idx = 0; idx < message_count; idx++) {
+    delete_last_message(database, &message_count);
+  }
+}
+void delete_db(char **database, size_t message_count) {
+  free_all(database, message_count);
+  free_database(database);
+}
 
 int main() {
   char **db = new_database();
@@ -152,14 +161,11 @@ int main() {
   db = delete_last_message(db, &msg_count);
   printf("msg_count = %zu\n", msg_count);
   printf("*db: %s\n", *db);
-  db = delete_last_message(db, &msg_count);
-  db = delete_last_message(db, &msg_count);
-  db = delete_last_message(db, &msg_count);
-  db = delete_last_message(db, &msg_count);
-  db = delete_last_message(db, &msg_count);
-  db = delete_last_message(db, &msg_count);
 
-  free_database(db);
+  delete_db(db, msg_count);
+  // Should produce seg-fault at this point
+  // printf("*db: %s\n", *db);
+  // printf("*(db + 1): %s\n", *(db + 0));
 
   return EXIT_SUCCESS;
 }
