@@ -84,7 +84,17 @@ void print_db_message(char **database, size_t db_index, size_t message_count) {
 
   printf("Message at %zu: %s\n", db_index, database[db_index]);
 }
-char **read_and_add_line(char **database, size_t *ptr_n);
+char **read_and_add_line(char **database, size_t *ptr_n) {
+  char user_input[BUFSIZ];
+  printf("Enter message to add to database: ");
+  // %[^\n]s will take a string with whitespaces (up to the first "enter")
+  // whereas %s will only take the user input up to the first whitespace
+  scanf("%[^\n]s", user_input);
+
+  database = add_message(user_input, database, ptr_n);
+
+  return database;
+}
 
 // d
 void print_all(char **database);
@@ -93,6 +103,8 @@ int main() {
   char **db = new_database();
   size_t msg_count = 0;
 
+  printf("msg_count: %zu\n", msg_count);
+  db = read_and_add_line(db, &msg_count);
   printf("msg_count: %zu\n", msg_count);
 
   print_db_message(db, 0, msg_count);
