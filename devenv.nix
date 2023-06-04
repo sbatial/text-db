@@ -9,7 +9,7 @@
 
   scripts = {
     compile.exec = "${pkgs.meson}/bin/meson compile -C build";
-    runit.exec = "./build/$DEFAULT_FILE";
+    runit.exec = "echo 'Running '$DEFAULT_FILE':' && ./build/$DEFAULT_FILE";
     crun.exec = "compile && runit";
     runtest.exec = "compile && for i in \$(seq 1 10); do runit; sleep 1; done";
   };
