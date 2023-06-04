@@ -73,11 +73,12 @@ void print_message(char **database, size_t i, size_t n) {
 // array(/db) with e.g. 6 messages you can only access messages up to db[5]
 
 void print_db_message(char **database, size_t db_index, size_t message_count) {
-  if (db_index > message_count - 1) {
+  if ((message_count < 1) || (db_index > (message_count - 1))) {
     printf("\033[31;mCannot access database at position %zu!\033[0;m (db_index "
            "= %zu "
            "> message_count = %zu)\n",
-           db_index, db_index, message_count - 1);
+           db_index, db_index,
+           message_count > 0 ? message_count - 1 : message_count);
     return;
   }
 
