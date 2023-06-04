@@ -60,7 +60,9 @@ char **delete_last_message(char **database, size_t *ptr_n) {
 // c
 void print_message(char **database, size_t i, size_t n) {
   if (i > n) {
-    printf("Cannot access database at %zu. (i = %zu > n = %zu)\n", i, i, n);
+    printf("\033[31;mCannot access database at position %zu!\033[0;m (i = %zu "
+           "> n = %zu)\n",
+           i, i, n);
     return;
   }
 
