@@ -97,7 +97,12 @@ char **read_and_add_line(char **database, size_t *ptr_n) {
 }
 
 // d
-void print_all(char **database);
+void print_all(char **database, size_t message_count) {
+  printf("\033[1;mPrint all logs\033[0;m\n");
+  for (size_t idx = 0; idx < message_count; idx++) {
+    print_db_message(database, idx, message_count);
+  }
+}
 
 int main() {
   char **db = new_database();
@@ -122,6 +127,8 @@ int main() {
   db = add_message("Are", db, &msg_count);
   db = add_message("You", db, &msg_count);
   db = add_message("On", db, &msg_count);
+
+  print_all(db, msg_count);
 
   printf("msg_count: %zu\n", msg_count);
   print_db_message(db, 0, msg_count);
