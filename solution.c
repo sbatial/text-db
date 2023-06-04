@@ -113,12 +113,57 @@ void delete_db(char **database, size_t message_count) {
   free_database(database);
 }
 
+void print_db_row(char **database, size_t db_index, size_t message_count,
+                  size_t longest_row) {
+  if ((message_count < 1) || (db_index > (message_count - 1))) {
+    printf("\033[31;mCannot access database at position %zu!\033[0;m (db_index "
+           "= %zu "
+           "> message_count = %zu)\n",
+           db_index, db_index,
+           message_count > 0 ? message_count - 1 : message_count);
+    return;
+  }
+  char row_delimiter[BUFSIZ] = "";
+
+  for (size_t i = 0; i < longest_row; i++) {
+    strcat(row_delimiter, "─");
+  }
+
+  char *cross_character = (db_index == 0 ? "┬" : "┼");
+  printf("───%s─%s─\n"
+         " %zu │ %s\n",
+         cross_character, row_delimiter, db_index, database[db_index]);
+}
+
+size_t longest_row(char **database, size_t message_count) {
+  size_t longest_row = 0;
+
+  for (size_t idx = 1; idx < message_count; idx++) {
+    if (strlen(database[idx - 1]) < strlen(database[idx])) {
+      longest_row = idx;
+    }
+  }
+
+  return longest_row;
+}
+
+void print_db(char **database, size_t message_count) {
+  printf("\033[1;mPrint all logs\033[0;m\n");
+
+  char *longest_entry = database[longest_row(database, message_count)];
+  printf("longest_entry: %lu\n", strlen(longest_entry));
+  size_t l_row = strlen(longest_entry);
+
+  for (size_t idx = 0; idx < message_count; idx++) {
+    print_db_row(database, idx, message_count, l_row);
+  }
+}
 int main() {
   char **db = new_database();
   size_t msg_count = 0;
 
   printf("msg_count: %zu\n", msg_count);
-  db = read_and_add_line(db, &msg_count);
+  // db = read_and_add_line(db, &msg_count);
   printf("msg_count: %zu\n", msg_count);
 
   print_db_message(db, 0, msg_count);
@@ -137,30 +182,7 @@ int main() {
   db = add_message("You", db, &msg_count);
   db = add_message("On", db, &msg_count);
 
-  print_all(db, msg_count);
-
-  printf("msg_count: %zu\n", msg_count);
-  print_db_message(db, 0, msg_count);
-  print_db_message(db, 1, msg_count);
-  print_db_message(db, 2, msg_count);
-  print_db_message(db, 3, msg_count);
-  print_db_message(db, 4, msg_count);
-  print_db_message(db, 5, msg_count);
-  print_db_message(db, 6, msg_count);
-  print_db_message(db, 7, msg_count);
-  print_db_message(db, 8, msg_count);
-  print_db_message(db, 9, msg_count);
-  print_db_message(db, 10, msg_count);
-  print_db_message(db, 11, msg_count);
-
-  db = add_message("This", db, &msg_count);
-
-  printf("*db: %s\n", *db);
-  printf("*(db + 6): %s\n", *(db + 6));
-  printf("msg_count = %zu\n", msg_count);
-  db = delete_last_message(db, &msg_count);
-  printf("msg_count = %zu\n", msg_count);
-  printf("*db: %s\n", *db);
+  print_db(db, msg_count);
 
   delete_db(db, msg_count);
   // Should produce seg-fault at this point
