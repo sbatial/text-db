@@ -12,7 +12,7 @@ void print_message(char **database, size_t i, size_t n);
 char **read_and_add_line(char **database, size_t *ptr_n);
 void print_all(char **database);
 
-int main(int argc, char *argv[]) {
+int main() {
   char **db = new_database();
 
   free_database(db);
