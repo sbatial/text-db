@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define N_BASE 5
+
 char **new_database();
 void free_database(char **database);
 char **add_message(char *message, char **database, size_t *ptr_n);
