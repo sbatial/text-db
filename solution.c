@@ -5,7 +5,14 @@
 #define N_BASE 5
 
 // a
-char **new_database() { return malloc(N_BASE * sizeof(char *)); }
+char **new_database() {
+  return calloc(N_BASE, sizeof(char *));
+  // Almost the same as:
+  // malloc(N_BASE * sizeof(char *));
+  // but better/safer because (according to the manual) if
+  // N_BASE * sizeof(char *) would lead to an integer overflow then malloc would
+  // just allocate a wrong amount of memory whereas calloc would fail
+}
 
 void free_database(char **database) { free(database); }
 
@@ -14,7 +21,12 @@ char **add_message(char *message, char **database, size_t *ptr_n) {
   unsigned long msg_len = strlen(message);
 
   if (0 == (*ptr_n % N_BASE)) {
-    database = realloc(database, (*ptr_n + N_BASE) * sizeof(char *));
+    database = reallocarray(database, (*ptr_n + N_BASE), sizeof(char *));
+    // Almost the same as:
+    // database = realloc(database, (*ptr_n + N_BASE) * sizeof(char *));
+    // but safer because (*ptr_n + N_BASE) * sizeof(char *) could overflow and
+    // lead to problems whereas (according to the manual) reallocarray() returns
+    // NULL and leaves the original memory intact
   }
 
   char *msg_store = malloc(sizeof(char) * (msg_len + 1));
