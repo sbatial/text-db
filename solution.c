@@ -58,7 +58,14 @@ char **delete_last_message(char **database, size_t *ptr_n) {
 }
 
 // c
-void print_message(char **database, size_t i, size_t n);
+void print_message(char **database, size_t i, size_t n) {
+  if (i > n) {
+    printf("Cannot access database at %zu. (i = %zu > n = %zu)\n", i, i, n);
+    return;
+  }
+
+  printf("Message at %zu: %s\n", i, database[i]);
+}
 char **read_and_add_line(char **database, size_t *ptr_n);
 
 // d
@@ -71,7 +78,9 @@ int main() {
   printf("msg_count: %zu\n", msg_count);
 
   printf("*db: %s\n", *db);
+  print_message(db, 0, msg_count);
   printf("*(db + 1): %s\n", *(db + 1));
+  print_message(db, 1, msg_count);
   printf("*(db + 2): %s\n", *(db + 2));
   printf("*(db + 3): %s\n", *(db + 3));
   printf("*(db + 4): %s\n", *(db + 4));
