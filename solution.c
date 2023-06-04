@@ -14,8 +14,10 @@ char **add_message(char *message, char **database, size_t *ptr_n) {
   unsigned long msg_len = strlen(message);
   // printf("%lu\n", msg_len);
 
-  if (N_BASE == 5) {
-    database = realloc(database, sizeof(char) * N_BASE);
+  if (0 == (*ptr_n % N_BASE)) {
+    printf("New length: %lu\n", (*ptr_n + N_BASE));
+    printf("Current message: %s\n", message);
+    database = realloc(database, (*ptr_n + N_BASE) * sizeof(char *));
   }
 
   char *msg_store = malloc(sizeof(char) * (msg_len + 1));
