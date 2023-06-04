@@ -14,8 +14,6 @@ char **add_message(char *message, char **database, size_t *ptr_n) {
   unsigned long msg_len = strlen(message);
 
   if (0 == (*ptr_n % N_BASE)) {
-    printf("New length: %lu\n", (*ptr_n + N_BASE));
-    printf("Current message: %s\n", message);
     database = realloc(database, (*ptr_n + N_BASE) * sizeof(char *));
   }
 
@@ -26,14 +24,6 @@ char **add_message(char *message, char **database, size_t *ptr_n) {
   *(database + *ptr_n) = msg_store;
 
   ++(*ptr_n);
-
-  // printf("%zu\n", ++*ptr_n);
-  // printf("%p\n", ptr_n);
-  // database[*ptr_n] = msg_store;
-
-  // printf("%lu\n", sizeof(msg_store));
-
-  // free(msg_store);
 
   return database;
 }
@@ -89,7 +79,6 @@ int main() {
   printf("*(db + 1): %s\n", *(db + 1));
 
   free_database(db);
-  // free(msg_count);
 
   return EXIT_SUCCESS;
 }
