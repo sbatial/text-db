@@ -185,7 +185,7 @@ int main() {
     user_input[strcspn(user_input, "\r\n")] = '\0';
 
     if (strcmp(":q", user_input) == 0) {
-      goto exit_gracefully;
+      break;
     }
 
     if (strcmp(":p", user_input) == 0) {
@@ -195,8 +195,6 @@ int main() {
 
     database = add_message(user_input, database);
   }
-
-exit_gracefully:
 
   print_db(database);
 
