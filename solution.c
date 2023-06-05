@@ -170,11 +170,14 @@ int main() {
   DATABASE *database = malloc(sizeof(DATABASE));
   database->data = new_database();
   database->msg_count = 0;
+
+  printf(":h for help\n"
+         ":p to get current state\n"
+         ":q to quit\n");
   while (1) {
     char user_input[BUFSIZ] = "";
 
-    printf("Enter message to add to database (:q to quit, :p to get current "
-           "state) ");
+    printf("Enter message to add to database ");
     // %[^\n]s will take a string with whitespaces (up to the first "enter")
     // whereas %s will only take the user input up to the first whitespace
     fgets(user_input, BUFSIZ, stdin);
@@ -190,6 +193,13 @@ int main() {
 
     if (strcmp(":p", user_input) == 0) {
       print_db(database);
+      continue;
+    }
+
+    if (strcmp(":h", user_input) == 0) {
+      printf(":h for help\n"
+             ":p to get current state\n"
+             ":q to quit\n");
       continue;
     }
 
