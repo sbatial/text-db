@@ -179,12 +179,12 @@ int main() {
   // db = read_and_add_line(db, &msg_count);
   printf("msg_count: %zu\n", msg_count);
 
-  print_db_message(db, 0, msg_count);
-  print_db_message(db, 1, msg_count);
-  print_db_message(db, 2, msg_count);
-  print_db_message(db, 3, msg_count);
-  print_db_message(db, 4, msg_count);
-  print_db_message(db, 5, msg_count);
+  // print_db_message(db, 0, msg_count);
+  // print_db_message(db, 1, msg_count);
+  // print_db_message(db, 2, msg_count);
+  // print_db_message(db, 3, msg_count);
+  // print_db_message(db, 4, msg_count);
+  // print_db_message(db, 5, msg_count);
   // printf("*(db + 5): %s\n", *(db + 5)); // will seg-fault at this point bc
   // the database is not big enough
 
@@ -195,6 +195,13 @@ int main() {
   db = add_message("You", db, &msg_count);
   db = add_message("On", db, &msg_count);
 
+  database->data = add_message("Hello", database->data, &database->msg_count);
+  database->data = add_message("World", database->data, &database->msg_count);
+  database->data = add_message("How", database->data, &database->msg_count);
+  database->data = add_message("Are", database->data, &database->msg_count);
+  database->data = add_message("You", database->data, &database->msg_count);
+  database->data = add_message("On", database->data, &database->msg_count);
+  print_db(database->data, database->msg_count);
   print_db(db, msg_count);
 
   delete_db(db, msg_count);
