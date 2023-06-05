@@ -225,9 +225,10 @@ void input_loop(DATABASE *database) {
       continue;
     }
 
+    char u_in[BUFSIZ];
     int idx = 0;
-    sscanf(user_input, "%s %i", user_input, &idx);
-    if (strcmp(":x", user_input) == 0) {
+    sscanf(user_input, "%s %i", u_in, &idx);
+    if (strcmp(":x", u_in) == 0) {
       database = delete_message(database, idx);
       continue;
     }
