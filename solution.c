@@ -4,6 +4,11 @@
 
 #define N_BASE 5
 
+struct DATABASE {
+  char **data;
+  size_t msg_count;
+};
+
 // a
 char **new_database() {
   return calloc(N_BASE, sizeof(char *));
@@ -157,6 +162,7 @@ void print_db(char **database, size_t message_count) {
     print_db_row(database, idx, message_count, l_row);
   }
 }
+
 int main() {
   char **db = new_database();
   size_t msg_count = 0;
