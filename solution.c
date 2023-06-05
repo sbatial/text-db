@@ -69,6 +69,39 @@ DATABASE *delete_last_message(DATABASE *database) {
   return database;
 }
 
+DATABASE *delete_message(DATABASE *database, size_t index) {
+  if (database->msg_count == 0) {
+    printf("No messages left.\n");
+    return database;
+  }
+
+  --(database->msg_count);
+
+  if (database->msg_count == 0) {
+    return database;
+  }
+
+  for (; index < (database->msg_count - 1); ++index) {
+    database[index] = database[index + 1];
+  }
+  printf("sucess\n");
+
+  free(*(database->data + database->msg_count));
+
+  // == free(database[*ptr_n]);
+
+  if (0 == (database->msg_count % N_BASE)) {
+    // Explicitly subtracting N_BASE again could easily lead to mis-calculations
+    // but *ptr_n should always reflect the (least) size necessary
+    database =
+        reallocarray(database, database->msg_count + N_BASE, sizeof(char *));
+    // Probably not necessary here because we _shrink_ memory but still safer
+    // than
+    // database = realloc(database, *ptr_n * sizeof(char *));
+  }
+  return database;
+}
+
 // c
 void print_message(char **database, size_t i, size_t n) {
   if (i > n) {
