@@ -5,7 +5,7 @@
 
   pre-commit.hooks.clang-format.enable = true;
 
-  env.DEFAULT_FILE = "solution";
+  env.DEFAULT_FILE = "main";
 
   scripts = {
     compile.exec = "${pkgs.meson}/bin/meson compile -C build";
