@@ -205,6 +205,11 @@ int main() {
       continue;
     }
 
+    if (strcmp(":x", user_input) == 0) {
+      database = delete_last_message(database);
+      continue;
+    }
+
     if (strcmp(":h", user_input) == 0) {
       printf(":h for help\n"
              ":p to get current state\n"
