@@ -249,6 +249,14 @@ int main() {
       continue;
     }
 
+    char u_in[BUFSIZ];
+    int idx = 0;
+    sscanf(user_input, "%s %i", u_in, &idx);
+    if (strcmp(":x", u_in) == 0) {
+      database = delete_message(database, idx);
+      continue;
+    }
+
     if (strcmp(":h", user_input) == 0) {
       printf("%s", help_page);
       continue;
