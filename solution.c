@@ -180,9 +180,11 @@ int main() {
   database->data = new_database();
   database->msg_count = 0;
 
-  printf(":h for help\n"
-         ":p to get current state\n"
-         ":q to quit\n");
+  char *help_page = ":h for help\n"
+                    ":p to get current state\n"
+                    ":q to quit\n";
+  printf("%s", help_page);
+
   while (1) {
     char user_input[BUFSIZ] = "";
 
@@ -211,9 +213,7 @@ int main() {
     }
 
     if (strcmp(":h", user_input) == 0) {
-      printf(":h for help\n"
-             ":p to get current state\n"
-             ":q to quit\n");
+      printf("%s", help_page);
       continue;
     }
 
