@@ -121,7 +121,7 @@ DATABASE *read_and_add_line(DATABASE *database) {
 
 // d
 void print_all(DATABASE *database) {
-  printf("\033[1;mPrint all logs\033[0;m\n");
+  printf("\033[1;mPrint %zu logs\033[0;m\n", database->msg_count);
   for (size_t idx = 0; idx < database->msg_count; idx++) {
     print_db_message(idx, database);
   }
