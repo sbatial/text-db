@@ -69,9 +69,6 @@ DATABASE *delete_last_message(DATABASE *database) {
   return database;
 }
 
-// FIXME: Somewhere in here is something wrong
-// Working: ":x 0" on a database with 1 or 0 entries
-// Not Working: ":x 0" on a database with 4 entries
 DATABASE *delete_message(DATABASE *database, size_t index) {
   if (database->msg_count == 0) {
     printf("No messages left.\n");
@@ -84,8 +81,8 @@ DATABASE *delete_message(DATABASE *database, size_t index) {
     return database;
   }
 
-  for (; index < (database->msg_count - 1); ++index) {
-    database->data[index] = database->data[index + 1];
+  for (size_t idx = index; idx < database->msg_count; ++idx) {
+    strcpy(database->data[idx], database->data[idx + 1]);
   }
   printf("sucess\n");
 
