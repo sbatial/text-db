@@ -188,6 +188,8 @@ void print_db(DATABASE *database) {
   for (size_t idx = 0; idx < database->msg_count; idx++) {
     print_db_row(idx, l_row, database);
   }
+
+  printf("\n");
 }
 
 void input_loop(DATABASE *database) {
