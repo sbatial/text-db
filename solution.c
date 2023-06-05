@@ -4,10 +4,10 @@
 
 #define N_BASE 5
 
-struct DATABASE {
+typedef struct {
   char **data;
   size_t msg_count;
-};
+} DATABASE;
 
 // a
 char **new_database() {
