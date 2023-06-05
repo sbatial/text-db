@@ -171,41 +171,9 @@ int main() {
   database->data = new_database();
   database->msg_count = 0;
 
-  // char **db = new_database();
-  size_t msg_count = 0;
-
-  printf("msg_count: %zu\n", msg_count);
-  // db = read_and_add_line(db, &msg_count);
-  printf("msg_count: %zu\n", msg_count);
-
-  // print_db_message(db, 0, msg_count);
-  // print_db_message(db, 1, msg_count);
-  // print_db_message(db, 2, msg_count);
-  // print_db_message(db, 3, msg_count);
-  // print_db_message(db, 4, msg_count);
-  // print_db_message(db, 5, msg_count);
-  // printf("*(db + 5): %s\n", *(db + 5)); // will seg-fault at this point bc
-  // the database is not big enough
-
-  // db = add_message("Hello", db, &msg_count);
-  // db = add_message("World", db, &msg_count);
-  // db = add_message("How", db, &msg_count);
-  // db = add_message("Are", db, &msg_count);
-  // db = add_message("You", db, &msg_count);
-  // db = add_message("On", db, &msg_count);
-
-  database = add_message("Hello", database);
-  database = add_message("World", database);
-  database = add_message("How", database);
-  database = add_message("Are", database);
-  database = add_message("You", database);
-  database = add_message("On", database);
   print_db(database);
 
   free_all(database);
-  // Should produce seg-fault at this point
-  // printf("*db: %s\n", *db);
-  // printf("*(db + 1): %s\n", *(db + 0));
 
   return EXIT_SUCCESS;
 }
