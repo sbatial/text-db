@@ -52,6 +52,11 @@ DATABASE *delete_message(DATABASE *database, size_t index) {
     return database;
   }
 
+  if (index > (database->msg_count)) {
+    printf("No field with index %zu.\n", index);
+    return database;
+  }
+
   --database->msg_count;
 
   if (database->msg_count == 0) {
