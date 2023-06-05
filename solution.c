@@ -157,9 +157,10 @@ void free_all(DATABASE *database) {
     database = delete_last_message(database);
   }
 }
+
 void delete_db(DATABASE *database) {
   free_all(database);
-  free_database(database);
+  // free_database(database);
 }
 
 void print_db_row(size_t db_index, size_t longest_row, DATABASE *database) {
