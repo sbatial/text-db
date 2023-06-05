@@ -209,11 +209,7 @@ void print_db(DATABASE *database) {
   }
 }
 
-int main() {
-  DATABASE *database = malloc(sizeof(DATABASE));
-  database->data = new_database();
-  database->msg_count = 0;
-
+void input_loop(DATABASE *database) {
   char *help_page = ":h\t\tfor help\n"
                     ":p\t\tto get current state\n"
                     ":x\t\tto delete last message\n"
@@ -266,6 +262,14 @@ int main() {
 
     database = add_message(user_input, database);
   }
+}
+
+int main() {
+  DATABASE *database = malloc(sizeof(DATABASE));
+  database->data = new_database();
+  database->msg_count = 0;
+
+  input_loop(database);
 
   print_db(database);
 
