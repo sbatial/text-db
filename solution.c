@@ -66,7 +66,6 @@ DATABASE *delete_message(DATABASE *database, size_t index) {
   for (size_t idx = index; idx < database->msg_count; ++idx) {
     strcpy(database->data[idx], database->data[idx + 1]);
   }
-  printf("sucess\n");
 
   free(*(database->data + database->msg_count));
 
