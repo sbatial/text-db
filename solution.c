@@ -170,6 +170,33 @@ int main() {
   DATABASE *database = malloc(sizeof(DATABASE));
   database->data = new_database();
   database->msg_count = 0;
+  while (1) {
+    char user_input[BUFSIZ] = "";
+
+    printf("Enter message to add to database (:q to quit, :p to get current "
+           "state) ");
+    // %[^\n]s will take a string with whitespaces (up to the first "enter")
+    // whereas %s will only take the user input up to the first whitespace
+    fgets(user_input, BUFSIZ, stdin);
+
+    // remove trailing newline character by setting the first \r or \n to the
+    // terminating \0
+    // see <https://stackoverflow.com/a/28462221>
+    user_input[strcspn(user_input, "\r\n")] = '\0';
+
+    if (strcmp(":q", user_input) == 0) {
+      goto exit_gracefully;
+    }
+
+    if (strcmp(":p", user_input) == 0) {
+      print_db(database);
+      continue;
+    }
+
+    database = add_message(user_input, database);
+  }
+
+exit_gracefully:
 
   print_db(database);
 
