@@ -85,7 +85,7 @@ DATABASE *delete_message(DATABASE *database, size_t index) {
   }
 
   for (; index < (database->msg_count - 1); ++index) {
-    database[index] = database[index + 1];
+    database->data[index] = database->data[index + 1];
   }
   printf("sucess\n");
 
