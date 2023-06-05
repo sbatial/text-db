@@ -222,8 +222,11 @@ int main() {
                     ":q\t\tto quit\n";
   printf("%s", help_page);
 
+  char user_input[BUFSIZ] = "";
   while (1) {
-    char user_input[BUFSIZ] = "";
+    // Reset input
+    memset(user_input, 0, strlen(user_input));
+    // memset(user_input, 0, BUFSIZ);
 
     printf("Enter message to add to database ");
     // %[^\n]s will take a string with whitespaces (up to the first "enter")
