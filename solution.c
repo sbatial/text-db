@@ -214,10 +214,12 @@ int main() {
   database->data = new_database();
   database->msg_count = 0;
 
-  char *help_page = ":h for help\n"
-                    ":p to get current state\n"
-                    ":x to delete last message\n"
-                    ":q to quit\n";
+  char *help_page = ":h\t\tfor help\n"
+                    ":p\t\tto get current state\n"
+                    ":x\t\tto delete last message\n"
+                    ":x <num>\tto delete message at index <num>\n"
+                    "\t\tdoes nothing if <num> > amount of logs\n"
+                    ":q\t\tto quit\n";
   printf("%s", help_page);
 
   while (1) {
