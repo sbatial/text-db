@@ -181,7 +181,7 @@ void print_db(DATABASE *database) {
     printf("\033[1;mEmpty database!\033[0;m\n");
     return;
   }
-  printf("\033[1;mPrint all logs\033[0;m\n");
+  printf("\033[1;mPrint %zu logs\033[0;m\n", database->msg_count);
 
   char *longest_entry = database->data[longest_row(database)];
   size_t l_row = strlen(longest_entry);
