@@ -164,6 +164,10 @@ void print_db(char **database, size_t message_count) {
 }
 
 int main() {
+  DATABASE *database = malloc(sizeof(DATABASE));
+  database->data = new_database();
+  database->msg_count = 0;
+
   char **db = new_database();
   size_t msg_count = 0;
 
