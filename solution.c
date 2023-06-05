@@ -195,7 +195,7 @@ void print_db(DATABASE *database) {
 void input_loop(DATABASE *database) {
   char *help_page = ":h\t\tfor help\n"
                     ":p\t\tto get current state\n"
-                    ":x\t\tto delete last message\n"
+                    ":x\t\tto delete last message (same as `:x <msg_count>`)\n"
                     ":x <num>\tto delete message at index <num>\n"
                     "\t\tdoes nothing if <num> > amount of logs\n"
                     ":q\t\tto quit\n";
