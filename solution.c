@@ -192,6 +192,7 @@ void print_db(DATABASE *database) {
   printf("\n");
 }
 
+// TODO: Let user access recent commands via arrow keys
 void input_loop(DATABASE *database) {
   char *help_page = ":h\t\tfor help\n"
                     ":p\t\tto get current state\n"
