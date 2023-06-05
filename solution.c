@@ -215,6 +215,7 @@ int main() {
 
   char *help_page = ":h for help\n"
                     ":p to get current state\n"
+                    ":x to delete last message\n"
                     ":q to quit\n";
   printf("%s", help_page);
 
