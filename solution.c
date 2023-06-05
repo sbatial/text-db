@@ -47,6 +47,11 @@ DATABASE *add_message(char *message, DATABASE *database) {
 }
 
 DATABASE *delete_last_message(DATABASE *database) {
+  if (database->msg_count == 0) {
+    printf("No messages left.\n");
+    return database;
+  }
+
   --(database->msg_count);
 
   free(*(database->data + database->msg_count));
