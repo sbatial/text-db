@@ -153,6 +153,10 @@ size_t longest_row(char **database, size_t message_count) {
 }
 
 void print_db(char **database, size_t message_count) {
+  if (message_count == 0) {
+    printf("\033[1;mEmpty database!\033[0;m\n");
+    return;
+  }
   printf("\033[1;mPrint all logs\033[0;m\n");
 
   char *longest_entry = database[longest_row(database, message_count)];
