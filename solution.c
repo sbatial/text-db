@@ -116,7 +116,10 @@ void free_all(DATABASE *database) {
     database = delete_last_message(database);
   }
 }
-void delete_db(DATABASE *database) { free_all(database); }
+void delete_db(DATABASE *database) {
+  free_all(database);
+  free_database(database);
+}
 
 void print_db_row(size_t db_index, size_t longest_row, DATABASE *database) {
   if ((database->msg_count < 1) || (db_index > (database->msg_count - 1))) {
@@ -209,7 +212,7 @@ int main() {
 
   print_db(database);
 
-  free_all(database);
+  delete_db(database);
 
   return EXIT_SUCCESS;
 }
