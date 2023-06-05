@@ -150,7 +150,10 @@ void print_all(DATABASE *database) {
   }
 }
 
-void free_all(DATABASE *database) { free(database->data); }
+void free_all(DATABASE *database) {
+  free(database->data);
+  database->msg_count = 0;
+}
 
 void delete_db(DATABASE *database) {
   free_all(database);
