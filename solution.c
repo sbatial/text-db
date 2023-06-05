@@ -149,11 +149,8 @@ void print_all(DATABASE *database) {
     print_db_message(idx, database);
   }
 }
-void free_all(DATABASE *database) {
-  for (size_t idx = 0; idx < database->msg_count; idx++) {
-    database = delete_last_message(database);
-  }
-}
+
+void free_all(DATABASE *database) { free(database->data); }
 
 void delete_db(DATABASE *database) {
   free_all(database);
