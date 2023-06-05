@@ -55,7 +55,8 @@ DATABASE *delete_last_message(DATABASE *database) {
   if (0 == (database->msg_count % N_BASE)) {
     // Explicitly subtracting N_BASE again could easily lead to mis-calculations
     // but *ptr_n should always reflect the (least) size necessary
-    database = reallocarray(database, database->msg_count, sizeof(char *));
+    database =
+        reallocarray(database, database->msg_count + N_BASE, sizeof(char *));
     // Probably not necessary here because we _shrink_ memory but still safer
     // than
     // database = realloc(database, *ptr_n * sizeof(char *));
