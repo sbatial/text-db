@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  packages = with pkgs; [pkg-config ninja meson clang-tools llvmPackages_15.clang-unwrapped gdb];
+  packages = with pkgs; [musl pkg-config ninja meson clang-tools llvmPackages_15.clang-unwrapped gdb];
 
   languages.c.enable = true;
 
