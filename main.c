@@ -35,7 +35,7 @@ DATABASE *add_message(char *message, DATABASE *database) {
     // NULL and leaves the original memory intact
   }
 
-  void *msg_store = malloc(sizeof(char) * (msg_len + 1));
+  char *msg_store = malloc(sizeof(char) * (msg_len + 1));
 
   strcpy(msg_store, message);
 
