@@ -1,3 +1,9 @@
+# Migration notice or Have you heard of gitlab?
+
+In the unlikely case that someone stumbles over this repo: -> I have moved all of my personal repositories over to https://gitlab.com/sbatial because I find the platform much less annoying (e.g.: a new repo is created if I push to a non-existing one. I do not understand how github does not do this...)
+
+---
+
 Simple text based (non-permanent) "database" with textual interface.
 
 Born out of a uni excercise, boredom and curiosity.
